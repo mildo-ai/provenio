@@ -1,0 +1,40 @@
+{
+  "name": "provenio-mcp",
+  "version": "0.4.0",
+  "description": "Provenio art provenance intelligence MCP \u2014 282,731-node knowledge graph, every answer cited, custody gaps named. Free open beta.",
+  "keywords": [
+    "mcp",
+    "art",
+    "provenance",
+    "art-history",
+    "auction",
+    "cidoc-crm",
+    "knowledge-graph",
+    "claude",
+    "openai"
+  ],
+  "homepage": "https://provenio.art",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mildo-ai/provenio"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "provenio-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+}

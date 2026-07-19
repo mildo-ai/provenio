@@ -64,6 +64,13 @@ certifies the <1% hallucination rate is re-runnable against the live API.
 Read the methodology: [The Invisible Gaps](https://provenio.art/report) ·
 [Genesis — the artwork](https://provenio.art/genesis)
 
+## Feedback & data corrections
+
+Found a wrong price, a broken custody chain, a missing attribution — or want a
+tool that doesn't exist yet? [Open an issue](https://github.com/mildo-ai/provenio/issues/new/choose).
+Data corrections are applied only with a citable source, and every applied
+correction is noted in the release log. You can also write to ceo@provenio.art.
+
 ---
 
 Built and operated by [Hoyeob Kim](https://provenio.art/genesis/colophon) · Mildo Inc. ·

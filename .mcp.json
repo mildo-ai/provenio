@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "provenio": {
+      "url": "https://provenio.art/api/mcp"
+    }
+  }
+}
