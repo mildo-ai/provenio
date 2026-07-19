@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "art.provenio/mcp",
+  "title": "Provenio — Art Intelligence",
+  "description": "Art-provenance intelligence: 282K-node knowledge graph, 100K+ auction lots, custody chains with Nazi-era (HEAR Act) / colonial / Knoedler risk flagging, influence networks, verbatim critical reception. ChatGPT-compatible (search/fetch). Surfaces provenance gap status; never asserts clean title.",
+  "version": "0.4.1",
+  "repository": {
+    "url": "https://github.com/mildo-ai/brain_for_art",
+    "source": "github"
+  },
+  "homepage": "https://provenio.art",
+  "license": "proprietary",
+  "categories": ["arts", "research", "knowledge-graph"],
+  "tags": ["art-history", "art-market", "provenance", "auction-records", "knowledge-graph", "influence-network", "reception-history", "due-diligence", "repatriation", "hear-act", "chatgpt-connector"],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://provenio.art/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional — open beta needs no key. Anonymous use: 5,000 calls/month, IP-based, all 27 tools, full corpus. Need a higher cap? Write to ceo@provenio.art. Institutional (private instance, custom ingest, data residency US/EU/CH): contact via https://provenio.art.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool_count": 27,
+      "chatgpt_tools": ["search", "fetch"],
+      "icon": "https://provenio.art/icon.svg",
+      "data_integrity": "HEAR Act 2025 compliant; all facts source-cited. Reproducible audit trail (re-run tools/e2e/*.py against live API/DB): see _reports/apex/EVIDENCE_LEDGER_2026-05-31.md and https://provenio.art/api/stats"
+    }
+  }
+}

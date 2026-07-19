@@ -1,0 +1,182 @@
+name: provenio
+displayName: Provenio — Art Intelligence
+description: |
+  Institutional-grade provenance and market intelligence for the art world.
+  282,731 cross-indexed records spanning three and a half centuries (1668–2025) of art history,
+  99,892 priced auction transactions, custody-gap detection with
+  risk-window flagging, influence networks, and critical reception arcs —
+  cross-indexed against Getty Provenance Index, Wikidata, Knoedler stock
+  books, and restitution databases. Built on CIDOC CRM + PROV-O. Published by Mildo Inc.
+version: "0.4.0"
+license: "proprietary"
+homepage: https://provenio.art
+# repository: omitted until the GitHub repo is made public — advertising a 404 link is 허울.
+#   [!HITL] CEO decision: make github.com/mildo-ai/brain_for_art public, then restore this line.
+#   [Source: live HEAD probe @2026-05-31 → HTTP 404, Conf 0.97]
+
+server:
+  type: http
+  url: https://provenio.art/api/mcp
+  transport: streamable-http
+
+categories:
+  - art
+  - culture
+  - research
+  - data
+  - history
+
+tags:
+  - art-history
+  - art-market
+  - provenance
+  - auction-records
+  - knowledge-graph
+  - influence-network
+  - reception-history
+  - getty-provenance-index
+  - knoedler
+  - cidoc-crm
+  - due-diligence
+  - repatriation
+  - institutional
+  - price-memory
+
+tools:
+  # --- Core search ---
+  - name: search_artists
+    description: Shortlist person nodes by name, nationality, or era. Returns display_name, birth/death years, nationality, era.
+  - name: get_artist
+    description: Composite artist profile — reception + influence + market in one call.
+  - name: search_artworks
+    description: Shortlist artworks by title, artist, medium, attribution status, or provenance risk profile.
+  - name: get_artwork
+    description: Composite artwork profile — iconography + custody + polity + transactions in one call.
+  - name: search_auction_history
+    description: Lot-level auction transactions with optional P25/P50/P75 percentile summary for comp-set analysis.
+  # --- Market & reception ---
+  - name: query_market_summary
+    description: Artist market rollup joined with reception register and political-context filters.
+  - name: get_influence_network
+    description: Influence claims (formative / significant / peripheral) with mechanism and transmission medium.
+  - name: get_reception_arc
+    description: Canonical-evolution timeline — hostile_contemporary → rehabilitation → canonical_elevation, with valences.
+  - name: query_reception_price_correlation
+    description: Relate reception-arc shifts to realized-price timelines — "does canonical elevation drive the market?"
+  - name: get_movement_context
+    description: Art movement or period concept — definition, reception arc, sample artworks.
+  # --- Provenance & lineage ---
+  - name: get_provenance_chain
+    description: Full custody chain with verification state and risk-window flagging (Nazi 1933–1945, colonial, Russian Rev, Knoedler 1970–2009). Always returns checked_databases.
+  - name: get_lineage_cluster
+    description: Teacher/student education lineage and cross-generational influence cluster.
+  - name: find_comparable_artworks
+    description: Iconographically-correct comparables by medium, period, patron class, and program.
+  - name: query_polity_dispersal
+    description: Custody dispersal of artworks produced under a given polity across contemporary institutions.
+  # --- Career intelligence ---
+  - name: get_exhibition_history
+    description: Exhibition timeline for artist or artwork — normalised records with fallback to KG event nodes.
+  - name: get_career_trajectory
+    description: Career arc milestones + stage (PRE_MARKET→ESTABLISHED) + pattern detection (A–E) + comparable artists.
+  - name: compare_career_patterns
+    description: Side-by-side career trajectory comparison for two artists with overlap score and interpretation.
+  - name: find_emerging_artists_by_pattern
+    description: Discover emerging artists matching a historical career pattern (A–E) ranked by confidence.
+  # --- Gallery ecosystem ---
+  - name: search_galleries
+    description: Search galleries by name, tier (mega/major/boutique/emerging), country, or city.
+  - name: get_gallery_artists
+    description: Represented-artist roster for a gallery with exclusivity and period data.
+  - name: find_galleries_by_artist
+    description: All galleries (current and former) representing a specific artist.
+  # --- Public museum APIs (no key needed) ---
+  - name: lookup_met_museum
+    description: Search the Metropolitan Museum (~480K objects) or dereference a specific Met objectID.
+  - name: lookup_europeana
+    description: Search Europeana cultural heritage corpus (~50M EU museum records) by free-text query.
+  - name: lookup_wikidata_art
+    description: Run a SPARQL query against Wikidata for cross-museum location data, biographical facts, or any art entity.
+  # --- ChatGPT deep-research facade (MCP search/fetch contract) ---
+  - name: search
+    description: ChatGPT-deep-research entrypoint — natural-language search returning ranked record IDs with titles and snippets.
+  - name: fetch
+    description: ChatGPT-deep-research entrypoint — dereference a record ID returned by search into a full cited document.
+  # --- Bring Your Own Key (open beta: included) ---
+  - name: byok_external_query
+    description: Forward a JSON HTTP request to your own external API (Artnet, Artprice, gallery DB) and return the response. Included in the open beta.
+
+prompts:
+  # NOTE: "27 tools" is the public headline (matches server.json tool_count=27 and
+  # the live /api/mcp tools/list count). The 15 prompts below are an ADDITIONAL
+  # capability surface (27 tools + 15 prompts = 42 total), NOT counted in the
+  # 27-tool figure. Do not conflate the two when writing marketing copy.
+  # --- Valuation & market ---
+  - name: price_estimation
+    description: Estimate current market value via comparables + reception trajectory + influence premium.
+  - name: market_narrative
+    description: Write market narrative bridging reception history to current price memory multiples.
+  - name: post_auction_recap
+    description: Within-24-hour recap of an auction session — sell-through rate, outliers, market narrative for journalists.
+  - name: bid_analysis
+    description: Auction pre-bid analysis — max hammer, comparables, risk summary for a specific lot.
+  - name: deaccession_advisory
+    description: When and how to sell a work — timing + comparables + provenance risk for estate executor or private collector.
+  # --- Research & attribution ---
+  - name: attribution_research
+    description: Survey attribution history + contested claims + Panofsky-level iconography for authentication.
+  - name: provenance_due_diligence
+    description: Full due-diligence report — custody chain, gap analysis, four high-risk windows, restitution DB cross-check.
+  - name: repatriation_audit
+    description: Audit an artwork or polity for repatriation risk — custody + polity + displacement windows.
+  # --- Curatorial & gallery ---
+  - name: exhibition_narrative
+    description: Exhibition-catalogue wall text synthesizing iconography, polity, reception, and custody lineage.
+  - name: collector_matching
+    description: Match a collector's thesis to available lots by iconographic program + reception phase + price ceiling.
+  - name: undervalued_discovery
+    description: Find rehabilitation-phase artists whose reception has shifted but price has not caught up.
+  - name: primary_pricing_rationale
+    description: Gallery dealer's price-setting for a primary-market work — comparable artist trajectories + career stage.
+  - name: roster_discovery
+    description: Find artists to sign or invite based on market position + reception phase + lineage.
+  - name: booth_narrative_brief
+    description: Art-fair booth or curated show — thematic 6-artist cluster with market + cultural logic.
+  # --- Advanced reasoning ---
+  - name: multihop_analyst
+    description: Multi-hop graph reasoning — "French Impressionists with hostile contemporary reception that now sell > $10M".
+
+byok:
+  description: |
+    Bring Your Own Key (included in open beta) — pass your Artsy or Artnet
+    credentials as headers to federate live market data with Provenio's graph.
+  headers:
+    - name: x-artsy-key
+      description: Artsy API key (OAuth client credential)
+      required: false
+    - name: x-artnet-key
+      description: Artnet Price Database API key (B2B partnership)
+      required: false
+    - name: x-art-market-key
+      description: Art Market API key (artmarketapi.com)
+      required: false
+
+pricing:
+  open-beta:
+    price: "Free while in beta"
+    description: |
+      5,000 queries/month · all 27 tools · 15 prompts · full 273K-record corpus ·
+      Getty PI · Knoedler · ERR · wartime restitution · BYOK adapters ·
+      citations on every call · no credit card. If pricing ever begins,
+      beta users get 90 days' written notice first.
+  institutional:
+    description: |
+      By arrangement · private instance · on-premise MCP server · custom source
+      ingestion · data residency (US/EU/CH) · dedicated research fellow
+    contact: ceo@provenio.art
+
+authorization:
+  type: bearer
+  description: |
+    No auth required during open beta (5,000 queries/month, IP-based).
+    Need a higher cap? Write to ceo@provenio.art.
