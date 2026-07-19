@@ -52,7 +52,7 @@ Full catalogue: [provenio.art/docs](https://provenio.art/docs) ·
 ## Registries
 
 - Official MCP Registry: [`io.github.mildo-ai/provenio`](https://registry.modelcontextprotocol.io/v0/servers?search=provenio)
-- Smithery: [`mildo-ai/provenio`](https://smithery.ai/server/@mildo-ai/provenio)
+- Smithery: [`mildo-ai/provenio`](https://smithery.ai/servers/mildo-ai/provenio)
 
 ## Honesty engineering
 
